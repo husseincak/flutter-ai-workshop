@@ -31,7 +31,14 @@ class GeminiService {
           httpClient: VertexHttpClient(projectUrl),
         );
 
-  Future<String?> generateText(String prompt) async {}
+  Future<String?> generateText(String prompt) async {
+    final content = Content.text(prompt);
+    final response = await _model.generateContent([
+      content
+    ]); // puede ser un array con contenido (prompt) y subinstrucciones
+
+    return response.text;
+  }
 
   Future<List<String?>> generateMultiplesReponses(String prompt) async {
     return [];
